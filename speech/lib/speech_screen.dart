@@ -29,10 +29,28 @@ var isListening = false;
         repeat: true,
         repeatPauseDuration: const Duration(milliseconds: 100),
         showTwoGlows: true,
-        child: const CircleAvatar(
-          backgroundColor: bgColor,
-          radius: 35,
-          child: Icon(Icons.mic, color: Colors.white),
+
+        // GestureDetector is a widget that detects gestures
+        child: GestureDetector(
+          onTapDown:(details) {
+            setState(() {
+              isListening = true;
+              text = "Listening...";
+            });
+          },
+          onTapUp: (details) {
+            setState(() {
+              isListening = false;
+              text = "Hold the button to speak";
+            });
+          },
+          
+          // CircleAvatar is a circular widget with background color and radius
+          child: const CircleAvatar(
+            backgroundColor: bgColor,
+            radius: 35,
+            child: Icon(Icons.mic, color: Colors.white),
+          ),
         )
       ),
 
